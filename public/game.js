@@ -10,7 +10,7 @@ var array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 var computerLastTurn = null;
 
-checkboxDifficult.addEventListener("change", () => {
+/*checkboxDifficult.addEventListener("change", () => {
     if(checkboxDifficult.checked){
         mediumDiff = true;
         console.log(mediumDiff);
@@ -19,6 +19,7 @@ checkboxDifficult.addEventListener("change", () => {
         console.log(mediumDiff);
     }
 })
+*/
 
 buttonhuman.addEventListener("click", () => {
     humanFirst = true;
@@ -123,7 +124,8 @@ button9.addEventListener("click", () => {
 })
 
 function computerTurn(){
-    if(!mediumDiff){
+    console.log("starting computer turn")
+    if(!checkboxDifficult.checked){
         computerEasyTurn();
     } else {
         computerMediumTurn();
@@ -147,6 +149,8 @@ function computerEasyTurn() {
 }
 
 function computerMediumTurn(){
+    var randomIndex;
+    var lastturn;
     if(computerLastTurn == null){
         computerLastTurn = computerEasyTurn();
     } else {
@@ -162,19 +166,21 @@ function computerMediumTurn(){
             9: [5, 6, 8]
         };
         for(let i = 1; i < 10; i++){
+            console.log("adjacencymap10 = 2: " + adjacencyMap[1][0])
             if(computerLastTurn == i){
-                var randomIndex = Math.floor(Math.random() * adjacencyMap[i].length);
-                while(array[adjacencyMap.i[randomIndex] - 1] == 0){
+                randomIndex = Math.floor(Math.random() * adjacencyMap[i].length);
+                while(array[adjacencyMap[i][randomIndex] - 1] == 0){
                     randomIndex = Math.floor(Math.random() * adjacencyMap[i].length);
                 }
-                array[adjacencyMap.i[randomIndex] - 1] = 0;
+                array[adjacencyMap[i][randomIndex] - 1] = 0;
                 console.log(randomIndex);
                 console.log(array);
         
-                var square = document.getElementById(adjacencyMap.i[randomIndex]);
+                var square = document.getElementById(adjacencyMap[i][randomIndex]);
                 square.style.background = "red";
-                computerLastTurn = randomIndex;
+                lastturn = adjacencyMap[i][randomIndex];
             }
         }
+        computerLastTurn = lastturn;
     }
 }
