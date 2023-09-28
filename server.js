@@ -1,6 +1,8 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const express = require('express');
+const app = express();
 
 // Create a basic HTTP server
 const server = http.createServer((req, res) => {
